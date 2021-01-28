@@ -1,0 +1,29 @@
+<button mat-flat-button color="primary"  (click)="generateBoard()" *ngIf="!gameEnd">
+  Nuevo Juego
+</button>
+
+<button mat-flat-button color="primary"  (click)="generateBoard()" *ngIf="gameEnd">
+  Reiniciar Juego
+</button>
+
+<ng-container *ngIf="gameEnd">
+  Juego Terminado
+</ng-container>
+
+<table class="bingo-table">
+  <thead>
+    <th>B</th>
+    <th>I</th>
+    <th>N</th>
+    <th>G</th>
+    <th>O</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of board; let i = index">
+      <td *ngFor="let column of row; let j = index" (click)="markNumber(i, j)">
+        <button mat-flat-button color="primary" *ngIf="column !== markSymbol">{{ column }}</button>
+        <button mat-flat-button color="warn" *ngIf="column === markSymbol">{{ column }}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
